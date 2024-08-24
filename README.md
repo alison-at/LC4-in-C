@@ -8,7 +8,7 @@ Part 1:
 Read .obj file into memory, then parse .obj files into data and code in memory.
 Use makefile make trace to create .o files, Execute using command ./trace output_filename.txt first.obj second.obj third.obj
 
-Output format 
+Output format   
 address: (hexadecimal address) contents: (hexadecimal instruction)
 
 
