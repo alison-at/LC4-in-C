@@ -40,10 +40,10 @@ int main(int argc, char** argv)
         i++;
     }
     
-    //after all data from .objs is in memory, update CPU with new info while PC not out of range
+    //after all data from .obj files is in memory, update CPU with new info while program counter is not out of range of data space
     int w = 0;
     while (1) {
-      
+      //PC is at end of memory
       if (CPU->PC == 0x80FF) {
         break;
       }
