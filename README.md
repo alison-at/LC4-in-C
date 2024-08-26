@@ -1,7 +1,7 @@
-This is part of a larger project to simulate a UPenn LC4 Processor. 
+This is part of a larger project to simulate a UPenn LC4 Processor.    
 **Does not simulate I/O operations, can directly access memory simulating I/O
 
-Input - Binary .objs file of instructions to execute
+Input - Binary .objs file of instructions to execute    
 Output - Log of control signals in CPU after executing one datapath cycle
 
 Output Format   
