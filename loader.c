@@ -49,7 +49,7 @@ int ReadObjectFile(char* filename, MachineState* CPU)
     //printf("%X \n", head);
     //printf("PSR: %d\n", CPU->PSR);
     
-    //if header is c3b7, skip through address and next <length> characters
+    //if header is c3b7, skip through address and next <length> characters to get to next file element
     if (head == 50103) {
         c = fgetc(objFile);
       addr[0] = c;
@@ -68,7 +68,7 @@ int ReadObjectFile(char* filename, MachineState* CPU)
         c = fgetc(objFile);
         i++;
       }
-    //if header is F17E, skip through <length> characters
+    //if header is F17E, skip through <length> characters to get to next file element
     } else if (head == 61822) {
       c = fgetc(objFile);
       num[0] = c;
@@ -81,7 +81,7 @@ int ReadObjectFile(char* filename, MachineState* CPU)
         c = fgetc(objFile);
         i++;
       }
-    //if head is 715E, skip through address, line, file index
+    //if head is 715E, skip through address, line, file index, to get to next file element
     } else if (head == 29022) {
       //address
       c = fgetc(objFile);
@@ -117,14 +117,14 @@ int ReadObjectFile(char* filename, MachineState* CPU)
       length = (int)num[0]*16*16 +num[1];
       //printf("%d\n", length);
 
-      //if address  > 7FFF  && PSR[15] == 0 , quit code
+      //if address  > 7FFF  && PSR[15] == 0 , quit code because the OS is being interfered with without permission
       if (address > 32767 && CPU->PSR <= 32767) {
           printf("Invalid permission");
           fclose(objFile);
           return 2;
       }
 
-      //write to memory
+      //write code or data to memory
       while(i < length) {
         if (feof(objFile)) {
             break;
